@@ -22,8 +22,8 @@ import (
 
 	"github.com/crossplane/crossplane-runtime/pkg/logging"
 
-	"github.com/crossplane/provider-template/internal/controller/config"
-	"github.com/crossplane/provider-template/internal/controller/mytype"
+	"github.com/maltejk/provider-metakube/internal/controller/config"
+	"github.com/maltejk/provider-metakube/internal/controller/mytype"
 )
 
 // Setup creates all Template controllers with the supplied logger and adds them to
