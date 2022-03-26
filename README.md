@@ -1,4 +1,4 @@
-# provider-template
+# this is all non-working code
 
 `provider-template` is a minimal [Crossplane](https://crossplane.io/) Provider
 that is meant to be used as a template for implementing new Providers. It comes
