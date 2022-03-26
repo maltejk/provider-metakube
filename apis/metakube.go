@@ -20,7 +20,7 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	projectsv1alpha1 "github.com/maltejk/provider-metakube/projects/v1alpha1"
+	projectsv1alpha1 "github.com/maltejk/provider-metakube/apis/projects/v1alpha1"
 )
 
 func init() {

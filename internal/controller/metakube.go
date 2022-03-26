@@ -23,7 +23,6 @@ import (
 	"github.com/crossplane/crossplane-runtime/pkg/logging"
 
 	"github.com/maltejk/provider-metakube/internal/controller/config"
-	"github.com/maltejk/provider-metakube/internal/controller/mytype"
 )
 
 // Setup creates all Template controllers with the supplied logger and adds them to
@@ -31,7 +30,6 @@ import (
 func Setup(mgr ctrl.Manager, l logging.Logger, wl workqueue.RateLimiter) error {
 	for _, setup := range []func(ctrl.Manager, logging.Logger, workqueue.RateLimiter) error{
 		config.Setup,
-		mytype.Setup,
 	} {
 		if err := setup(mgr, l, wl); err != nil {
 			return err
