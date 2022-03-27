@@ -22,7 +22,7 @@ GO111MODULE = on
 -include build/makelib/k8s_tools.mk
 
 # Setup Images
-DOCKER_REGISTRY ?= crossplane
+DOCKER_REGISTRY ?= maltejk
 IMAGES = $(PROJECT_NAME) $(PROJECT_NAME)-controller
 -include build/makelib/image.mk
 
@@ -67,7 +67,7 @@ go.cachedir:
 run: go.build
 	@$(INFO) Running Crossplane locally out-of-cluster . . .
 	@# To see other arguments that can be provided, run the command with --help instead
-	$(GO_OUT_DIR)/$(PROJECT_NAME) --debug
+	$(GO_OUT_DIR)/provider --debug
 
 dev: $(KIND) $(KUBECTL)
 	@$(INFO) Creating kind cluster
