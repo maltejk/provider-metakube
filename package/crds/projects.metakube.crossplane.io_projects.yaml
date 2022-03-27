@@ -6,7 +6,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.6.2
   creationTimestamp: null
-  name: mytypes.projects.metakube.crossplane.io
+  name: projects.projects.metakube.crossplane.io
 spec:
   group: projects.metakube.crossplane.io
   names:
@@ -14,10 +14,10 @@ spec:
     - crossplane
     - managed
     - template
-    kind: MyType
-    listKind: MyTypeList
-    plural: mytypes
-    singular: mytype
+    kind: Project
+    listKind: ProjectList
+    plural: projects
+    singular: project
   scope: Cluster
   versions:
   - additionalPrinterColumns:
@@ -36,7 +36,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: A MyType is an example API type.
+        description: A Project is an metakube API type.
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation
@@ -51,7 +51,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: A MyTypeSpec defines the desired state of a MyType.
+            description: A ProjectSpec defines the desired state of a Project.
             properties:
               deletionPolicy:
                 default: Delete
@@ -63,12 +63,42 @@ spec:
                 - Delete
                 type: string
               forProvider:
-                description: MyTypeParameters are the configurable fields of a MyType.
+                description: A ProjectParameters defines the desired state of a Project.
                 properties:
-                  configurableField:
+                  annotations:
+                    additionalProperties:
+                      type: string
+                    description: Annotations that can be added to the resource
+                    type: object
+                  clustersNumber:
+                    description: clusters number
+                    format: int64
+                    type: integer
+                  creationTimestamp:
+                    description: 'CreationTimestamp is a timestamp representing the
+                      server time when this object was created. Format: date-time'
+                    format: date-time
                     type: string
-                required:
-                - configurableField
+                  deletionTimestamp:
+                    description: 'DeletionTimestamp is a timestamp representing the
+                      server time when this object was deleted. Format: date-time'
+                    format: date-time
+                    type: string
+                  id:
+                    description: ID unique value that identifies the resource generated
+                      by the server. Read-Only.
+                    type: string
+                  labels:
+                    additionalProperties:
+                      type: string
+                    description: labels
+                    type: object
+                  name:
+                    description: Name represents human readable name for the resource
+                    type: string
+                  status:
+                    description: status
+                    type: string
                 type: object
               providerConfigRef:
                 default:
@@ -115,10 +145,10 @@ spec:
             - forProvider
             type: object
           status:
-            description: A MyTypeStatus represents the observed state of a MyType.
+            description: A ProjectStatus represents the observed state of a Project.
             properties:
               atProvider:
-                description: MyTypeObservation are the observable fields of a MyType.
+                description: ProjectObservation are the observable fields of a Project.
                 properties:
                   observableField:
                     type: string

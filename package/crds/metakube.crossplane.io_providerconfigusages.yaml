@@ -13,7 +13,7 @@ spec:
     categories:
     - crossplane
     - provider
-    - template
+    - metakube
     kind: ProviderConfigUsage
     listKind: ProviderConfigUsageList
     plural: providerconfigusages

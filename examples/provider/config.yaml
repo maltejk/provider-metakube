@@ -10,7 +10,6 @@ data:
 apiVersion: metakube.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
-  namespace: crossplane-system
   name: metakube-example
 spec:
   apiBase: "/api/v1"
