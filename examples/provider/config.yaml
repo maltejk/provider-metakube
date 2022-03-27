@@ -5,16 +5,19 @@ metadata:
   name: metakube-provider-secret
 type: Opaque
 data:
-  credentials: BASE64ENCODED_PROVIDER_CREDS
+  token: dmVyeXNlY3JldDEy
 ---
 apiVersion: metakube.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
+  namespace: crossplane-system
   name: metakube-example
 spec:
-  credentials:
+  apiBase: "/api/v1"
+  apiHost: "metakube.syseleven.de"
+  token:
     source: Secret
     secretRef:
       namespace: crossplane-system
       name: metakube-provider-secret
-      key: credentials
+      key: token
