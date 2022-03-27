@@ -18,14 +18,7 @@ package client
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io"
-	"io/ioutil"
-	"net/http"
-	"net/url"
-	"strconv"
-	"strings"
 
 	httptransport "github.com/go-openapi/runtime/client"
 
@@ -75,29 +68,20 @@ func UseProviderConfig(ctx context.Context, c client.Client, mg resource.Managed
 		return nil, errors.Wrap(err, errCannotTrackProviderConfigUsage)
 	}
 
-	if pc.Spec.ClientID.Source != xpv1.CredentialsSourceSecret {
-		return nil, errors.New(errOnlySecretSourceAllowed)
-	}
-
-	clientID, credsErr := extractCredentialsFromSecret(ctx, c, pc.Spec.ClientID.CommonCredentialSelectors)
+	token, credsErr := extractCredentialsFromSecret(ctx, c, pc.Spec.Token.CommonCredentialSelectors)
 	if credsErr != nil {
 		return nil, errors.Wrap(credsErr, errExtractSecret)
 	}
 
-	if pc.Spec.ClientSecret.Source != xpv1.CredentialsSourceSecret {
+	if pc.Spec.Token.Source != xpv1.CredentialsSourceSecret {
 		return nil, errors.New(errOnlySecretSourceAllowed)
 	}
 
-	clientSecret, credsErr := extractCredentialsFromSecret(ctx, c, pc.Spec.ClientSecret.CommonCredentialSelectors)
-	if credsErr != nil {
-		return nil, errors.Wrap(credsErr, errExtractSecret)
-	}
-
-	transport := httptransport.New(pc.Spec.Host, "/", metakube.DefaultSchemes)
-	transport.DefaultAuthentication = httptransport.BearerToken(creds.AccessToken)
+	transport := httptransport.New("localhost", "/", metakube.DefaultSchemes)
+	transport.DefaultAuthentication = httptransport.BearerToken(token.token)
 
 	// Enable this line to see request and response in console output
-	// transport.SetDebug(true)
+	transport.SetDebug(true)
 
 	return transport, nil
 }
@@ -126,8 +110,4 @@ func extractCredentialsFromSecret(ctx context.Context, client client.Client, s x
 	}
 
 	return creds, nil
-}
-
-func closeBody(c io.Closer) {
-	_ = c.Close()
 }
