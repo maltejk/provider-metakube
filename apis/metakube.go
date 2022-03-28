@@ -21,11 +21,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 
 	projectsv1alpha1 "github.com/maltejk/provider-metakube/apis/projects/v1alpha1"
+	metakubev1alpha1 "github.com/maltejk/provider-metakube/apis/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
+		metakubev1alpha1.SchemeBuilder.AddToScheme,
 		projectsv1alpha1.SchemeBuilder.AddToScheme,
 	)
 }
