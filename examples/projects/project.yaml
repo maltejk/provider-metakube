@@ -1,0 +1,13 @@
+apiVersion: projects.metakube.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  name: testproject
+spec:
+  forProvider:
+    name: testproject
+    users:
+      - "username@isan.email"
+    labels:
+      "some_label": "kadse.xyz"
+  providerConfigRef:
+    name: metakube-example

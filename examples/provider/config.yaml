@@ -5,15 +5,13 @@ metadata:
   name: metakube-provider-secret
 type: Opaque
 data:
-  token: dmVyeXNlY3JldDEy
+  token: AbcImverysecret==
 ---
 apiVersion: metakube.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
   name: metakube-example
 spec:
-  apiBase: "/api/v1"
-  apiHost: "metakube.syseleven.de"
   token:
     source: Secret
     secretRef:
