@@ -46,7 +46,7 @@ import (
 const (
 	errNotProject     = "managed resource is not an Project custom resource"
 	errCreateFailed   = "cannot create Project"
-	errUpdateFailed   = "connot update Project"
+	errUpdateFailed   = "cannot update Project"
 	errDescribeFailed = "cannot describe Project"
 	errDeleteFailed   = "cannot delete Project"
 )
@@ -173,12 +173,10 @@ func (e *external) Update(ctx context.Context, mg resource.Managed) (managed.Ext
 		HTTPClient: &http.Client{},
 	}
 
-	resp, err := e.client.Project.UpdateProject(req, nil)
+	_, err := e.client.Project.UpdateProject(req, nil)
 	if err != nil {
-		return managed.ExternalUpdate{}, errors.Wrap(err, errCreateFailed)
+		return managed.ExternalUpdate{}, errors.Wrap(err, errUpdateFailed)
 	}
-
-	_ = resp
 
 	return managed.ExternalUpdate{}, nil
 }
