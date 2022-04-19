@@ -31,7 +31,7 @@ import (
 
 	"github.com/maltejk/provider-metakube/apis/v1alpha1"
 
-	metakube "github.com/maltejk/metakube-go-client/pkg/client"
+	mkClient "github.com/maltejk/metakube-go-client/pkg/client"
 )
 
 const (
@@ -77,7 +77,7 @@ func UseProviderConfig(ctx context.Context, c client.Client, mg resource.Managed
 		return nil, errors.New(errOnlySecretSourceAllowed)
 	}
 
-	transport := httptransport.New("localhost", "/", metakube.DefaultSchemes)
+	transport := httptransport.New(mkClient.DefaultHost, mkClient.DefaultBasePath, mkClient.DefaultSchemes)
 	transport.DefaultAuthentication = httptransport.BearerToken(token.token)
 
 	// Enable this line to see request and response in console output

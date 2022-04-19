@@ -77,12 +77,10 @@ spec:
                   creationTimestamp:
                     description: 'CreationTimestamp is a timestamp representing the
                       server time when this object was created. Format: date-time'
-                    format: date-time
                     type: string
                   deletionTimestamp:
                     description: 'DeletionTimestamp is a timestamp representing the
                       server time when this object was deleted. Format: date-time'
-                    format: date-time
                     type: string
                   id:
                     description: ID unique value that identifies the resource generated
@@ -96,9 +94,21 @@ spec:
                   name:
                     description: Name represents human readable name for the resource
                     type: string
+                  owners:
+                    description: Owners an optional owners list for the given project
+                    items:
+                      type: string
+                    type: array
                   status:
                     description: status
                     type: string
+                  users:
+                    description: Users seems to be imperative for creating a project
+                    items:
+                      type: string
+                    type: array
+                required:
+                - users
                 type: object
               providerConfigRef:
                 default:
@@ -150,8 +160,20 @@ spec:
               atProvider:
                 description: ProjectObservation are the observable fields of a Project.
                 properties:
-                  observableField:
+                  creationTimestamp:
                     type: string
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  owners:
+                    items:
+                      type: string
+                    type: array
+                  users:
+                    items:
+                      type: string
+                    type: array
                 type: object
               conditions:
                 description: Conditions of the resource.

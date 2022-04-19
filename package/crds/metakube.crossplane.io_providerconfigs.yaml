@@ -106,8 +106,6 @@ spec:
                 - source
                 type: object
             required:
-            - apiBase
-            - apiHost
             - token
             type: object
           status:

@@ -24,8 +24,8 @@ import (
 
 // A ProviderConfigSpec defines the desired state of a ProviderConfig.
 type ProviderConfigSpec struct {
-	APIHost string `json:"apiHost"`
-	APIBase string `json:"apiBase"`
+	APIHost string `json:"apiHost,omitempty"`
+	APIBase string `json:"apiBase,omitempty"`
 	// Token required to authenticate to Metakube.
 	Token ProviderCredentials `json:"token"`
 }
