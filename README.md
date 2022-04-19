@@ -1,13 +1,8 @@
 # this is all non-working code
 
-`provider-template` is a minimal [Crossplane](https://crossplane.io/) Provider
-that is meant to be used as a template for implementing new Providers. It comes
-with the following features that are meant to be refactored:
-
-- A `ProviderConfig` type that only points to a credentials `Secret`.
-- A `Project` resource type that serves as an example managed resource.
-- A managed resource controller that reconciles `Project` objects and simply
-  prints their configuration in its `Observe` method.
+`provider-metakube` is a minimal [Crossplane](https://crossplane.io/) Provider
+ for SysEleven's Metakube. It is work in progress and not yet feature complete.
+ Please see the CRDs for resources currently supported.
 
 ## Developing
 
